@@ -40,6 +40,8 @@
 		 const gxhr = new XMLHttpRequest();
 		 gxhr.open('GET', gfullUrl, true);
 		 gxhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		 gxhr.setRequestHeader('Authorization', 'Zoho-oauthtoken ' + accessToken); // Replace accessToken with your actual token
+
 		 gxhr.onload = function() {
         if (gxhr.status >= 200 && gxhr.status < 300) {
             const response = JSON.parse(gxhr.responseText);
