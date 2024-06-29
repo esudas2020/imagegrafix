@@ -44,8 +44,7 @@
         function showInvoiceList() {
 		//var fproject_desc = getParameterByName('project_desc'); 
 let params = new URL(window.location).searchParams;
-params.get('project_desc');
-
+let fproject_desc = params.get('project_desc');
             window.open("https://softwaresolutions.imagegrafix.in:8089/invoice/InvoiceList?Refference=" + fproject_desc);
         }
 
