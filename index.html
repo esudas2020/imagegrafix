@@ -127,7 +127,8 @@ var project_id = params.get('project_id');
 <body>
     	<p id="demo" style="font-size:20px"> </p>
 
-	<div class="mb-4 row">
+	<form class="row g-3">
+	
 		<div class="col-auto">	
 			<label for="selectmilestone" class="form-label">Select Milestone</label>
 		</div>		
@@ -140,8 +141,9 @@ var project_id = params.get('project_id');
 		<div class="col-auto">
 			<button onclick="showInvoiceList()" type="button" class="btn btn-primary">Show Invoice List</button>
 		</div>
-	</div>
 	
+	</div>
+		
 	<div id="token"></div>
 	
  	<div id="response"></div>
