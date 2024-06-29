@@ -2,45 +2,14 @@
 <html>
 
 <head>
-    <title>App Default Screen</title>
-    <script src="https://js.zohocdn.com/projects/js/client_sdk.min.js"></script>
+    <title>App Default Screen</title>    
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <style>
         div.a {
             line-height: 200%;
         }
     </style>
-    <script>
-        var project_name = "";
-        var project_desc = "";
-        var milestone = "";
-        var milestone_id = "";
-        var project_id = "";
-        Util = {};
-        zohoprojects.init().then(function() {
-            zohoprojects.get("project.name").then(function(response) {
-                project_name = response.data;
-                document.getElementById("demo").innerHTML = project_name;
-            });
-
-            zohoprojects.get("project.description").then(function(response) {
-                project_desc = response.data;
-                document.getElementById("demo").innerHTML = project_desc;
-            });
-            zohoprojects.get("project.id_string").then(function(response) {
-                project_id = response.data;
-                document.getElementById("demo").innerHTML = project_id;
-            });
-            zohoprojects.get("milestone.name").then(function(response) {
-                milestone = response.data;
-                document.getElementById("demo").innerHTML = milestone;
-            });
-            zohoprojects.get("milestone.id").then(function(response) {
-                milestone_id = response.data;
-                document.getElementById("demo").innerHTML = milestone_id;
-            });
-        });
-
+    <script>       
         function showInvoiceList() {
 		//var fproject_desc = getParameterByName('project_desc'); 
 var params = new URL(window.location).searchParams;
