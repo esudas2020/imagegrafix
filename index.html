@@ -30,7 +30,7 @@
     xhr.onload = function() {
         if (xhr.status >= 200 && xhr.status < 300) {
             const response = JSON.parse(xhr.responseText);
-document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
+//document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
 		
 		const jsonResponse = JSON.parse(xhr.responseText);
             const accessToken = jsonResponse.access_token;
@@ -84,20 +84,30 @@ alert(gjsonResponse.milestones.length);
     //xhr.send(JSON.stringify(postData));
 		xhr.send();
 	}
-		function showInvoiceList() {
+	    
 var params = new URL(window.location).searchParams;
-var fproject_desc = params.get('project_desc');
-            window.open("https://softwaresolutions.imagegrafix.in:8089/invoice/InvoiceList?Refference=" + fproject_desc);
+var project_desc = params.get('project_desc');		
+//var milestone_id = params.get('milestone_id');
+//var milestone = params.get('milestone');
+var project_id = params.get('project_id');
+	    
+	function showInvoiceList() {
+            window.open("https://softwaresolutions.imagegrafix.in:8089/invoice/InvoiceList?Refference=" + project_desc);
         }
 
-        function createInvoice() {
-		var params = new URL(window.location).searchParams;
-var project_desc = params.get('project_desc');
-		//project_id, milestone, milestone_id			
-var milestone_id = params.get('milestone_id');
-		var milestone = params.get('milestone');
-		var project_id = params.get('project_id');
-            window.open("https://softwaresolutions.imagegrafix.in:8089/invoice/index?MileStone=" + milestone + "&Refference=" + project_desc + "&Milestone ID=" + milestone_id + "&Projectid=" + project_id);
+        function createInvoice() {		
+		
+		const selectElement = document.getElementById('Select');
+            
+		const selectedIndex = selectElement.selectedIndex; // Get the index of the selected option
+            
+		const selectedOption = selectElement.options[selectedIndex]; // Get the selected option
+		
+		milestone = selectedOption.text
+		
+		milestone_id = selectedOption.value;
+		
+		window.open("https://softwaresolutions.imagegrafix.in:8089/invoice/index?MileStone=" + milestone + "&Refference=" + project_desc + "&Milestone ID=" + milestone_id + "&Projectid=" + project_id);
         }
 
 	    document.addEventListener('DOMContentLoaded', (event) => {
@@ -108,16 +118,17 @@ var milestone_id = params.get('milestone_id');
 </head>
 
 <body>
-    <p id="demo" style="font-size:20px"> </p>
-    <button onclick="createInvoice()">Create Invoice</button>
-
-    <button onclick="showInvoiceList()">Show Invoice List</button>
+    	<p id="demo" style="font-size:20px"> </p>
+    
+    	<button onclick="showInvoiceList()">Show Invoice List</button>
+	
+	<button onclick="createInvoice()">Create Invoice</button>
 	
 	<select id="Select" name="MileStoneList"></select>
 	
-	 <div id="token"></div>
- <div id="response"></div>
-
+	<div id="token"></div>
+	
+ 	<div id="response"></div>
 </body>
 
 </html>
