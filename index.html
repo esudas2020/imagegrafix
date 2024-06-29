@@ -49,6 +49,16 @@ document.getElementById('response').innerText = 'Response: ' + JSON.stringify(re
             const response = JSON.parse(gxhr.responseText);
 		
             document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
+
+		const gjsonResponse = JSON.parse(gxhr.responseText);
+
+		for (var i = 0; i < gjsonResponse.length; i++) {
+    var select = document.getElementById("Select");
+    var option = document.createElement("option");
+    option.text = gjsonResponse[i].name;
+    option.value = gjsonResponse[i].id;
+    select.add(option);
+}		
         } else {
             document.getElementById('response').innerText = 'Error: ' + gxhr.status + ' - ' + gxhr.statusText;
         }
@@ -117,6 +127,9 @@ var milestone_id = params.get('milestone_id');
     <button onclick="createInvoice()">Create Invoice</button>
 
     <button onclick="showInvoiceList()">Show Invoice List</button>
+	
+	<select id="Select" name="MileStoneList"></select>
+	
 	 <div id="token"></div>
  <div id="response"></div>
 
