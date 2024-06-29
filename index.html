@@ -10,12 +10,13 @@
             line-height: 200%;
         }
     </style>
-    <script>       
+    <script>       	    
         function showInvoiceList() {
 
 		var apiEndpoint = "https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.854d65ca9c39e1a2d218251b74f9003b.a56a440d96dc721b5a453024cd33c044&client_id=1000.5Y3AZV8FIIVVH6VZJU0Y6726IEET6J&client_secret=bf29f2e7680b5dde78d746d0ae4236ace7d88ef792&grant_type=refresh_token";
 
 		const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+		//https://cors-anywhere.herokuapp.com/corsdemo
 		 const fullUrl = proxyUrl + apiEndpoint;
 		 const xhr = new XMLHttpRequest();
 
@@ -29,6 +30,31 @@
     xhr.onload = function() {
         if (xhr.status >= 200 && xhr.status < 300) {
             const response = JSON.parse(xhr.responseText);
+
+		const jsonResponse = JSON.parse(xhr.responseText);
+            const accessToken = jsonResponse.access_token;
+
+				var apiEndpoint1 = "https://projectsapi.zoho.in/restapi/portal/60004006068/projects/38707000004631005/milestones/";
+
+		 const gfullUrl = proxyUrl + apiEndpoint1;
+		 const gxhr = new XMLHttpRequest();
+		 gxhr.open('GET', gfullUrl, true);
+		 gxhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		 gxhr.onload = function() {
+        if (gxhr.status >= 200 && gxhr.status < 300) {
+            const response = JSON.parse(gxhr.responseText);
+		
+            document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
+        } else {
+            document.getElementById('response').innerText = 'Error: ' + gxhr.status + ' - ' + gxhr.statusText;
+        }
+    };
+    // Handle request errors
+    gxhr.onerror = function() {
+        document.getElementById('response').innerText = 'Request failed.';
+    };
+    gxhr.send();
+		
             document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
         } else {
             document.getElementById('response').innerText = 'Error: ' + xhr.status + ' - ' + xhr.statusText;
@@ -44,7 +70,7 @@
     //xhr.send(JSON.stringify(postData));
 		xhr.send();
 		
-		
+		/*
 $.post(zturl,null, function(data, status){
     alert("Data: " + data + "\nStatus: " + status);
   });
@@ -62,6 +88,7 @@ $.post(zturl,null, function(data, status){
   .always(function() {
     alert( "finished" );
   });
+		*/
 		
 		//var fproject_desc = getParameterByName('project_desc'); 
 var params = new URL(window.location).searchParams;
