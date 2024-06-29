@@ -126,12 +126,21 @@ var project_id = params.get('project_id');
 
 <body>
     	<p id="demo" style="font-size:20px"> </p>
-    
-	<button onclick="showInvoiceList()" type="button" class="btn btn-primary">Show Invoice List</button>
 
-	<button onclick="createInvoice()" type="button" class="btn btn-primary">Create Invoice</button>
-
-	<select class="form-select" id="Select" name="MileStoneList" aria-label="Default select example"></select>
+	<div class="mb-4 row">
+		<div class="col-auto">	
+			<label for="selectmilestone" class="form-label">Select Milestone</label>
+		</div>		
+		<div class="col-auto">	
+			<select class="form-select" id="Select" name="MileStoneList" aria-label="Default select example"></select>
+		</div>
+		<div class="col-auto">	
+			<button onclick="createInvoice()" type="button" class="btn btn-primary">Create Invoice</button>
+		</div>		
+		<div class="col-auto">
+			<button onclick="showInvoiceList()" type="button" class="btn btn-primary">Show Invoice List</button>
+		</div>
+	</div>
 	
 	<div id="token"></div>
 	
