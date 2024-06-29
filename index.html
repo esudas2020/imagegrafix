@@ -30,11 +30,13 @@
     xhr.onload = function() {
         if (xhr.status >= 200 && xhr.status < 300) {
             const response = JSON.parse(xhr.responseText);
-
+document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
+		
 		const jsonResponse = JSON.parse(xhr.responseText);
             const accessToken = jsonResponse.access_token;
-
-				var apiEndpoint1 = "https://projectsapi.zoho.in/restapi/portal/60004006068/projects/38707000004631005/milestones/";
+ document.getElementById('token').innerText = accessToken;
+				
+		var apiEndpoint1 = "https://projectsapi.zoho.in/restapi/portal/60004006068/projects/38707000004631005/milestones/";
 
 		 const gfullUrl = proxyUrl + apiEndpoint1;
 		 const gxhr = new XMLHttpRequest();
@@ -57,7 +59,7 @@
     };
     gxhr.send();
 		
-            document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
+            
         } else {
             document.getElementById('response').innerText = 'Error: ' + xhr.status + ' - ' + xhr.statusText;
         }
@@ -115,6 +117,7 @@ var milestone_id = params.get('milestone_id');
     <button onclick="createInvoice()">Create Invoice</button>
 
     <button onclick="showInvoiceList()">Show Invoice List</button>
+	 <div id="token"></div>
  <div id="response"></div>
 
 </body>
