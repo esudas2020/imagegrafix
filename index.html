@@ -11,7 +11,7 @@
         }
     </style>
     <script>       	    
-        function showInvoiceList() {
+        function populateSelect() {
 
 		var apiEndpoint = "https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.854d65ca9c39e1a2d218251b74f9003b.a56a440d96dc721b5a453024cd33c044&client_id=1000.5Y3AZV8FIIVVH6VZJU0Y6726IEET6J&client_secret=bf29f2e7680b5dde78d746d0ae4236ace7d88ef792&grant_type=refresh_token";
 
@@ -34,7 +34,7 @@ document.getElementById('response').innerText = 'Response: ' + JSON.stringify(re
 		
 		const jsonResponse = JSON.parse(xhr.responseText);
             const accessToken = jsonResponse.access_token;
- document.getElementById('token').innerText = accessToken;
+ //document.getElementById('token').innerText = accessToken;
 				
 		var apiEndpoint1 = "https://projectsapi.zoho.in/restapi/portal/60004006068/projects/38707000004631005/milestones/";
 
@@ -48,10 +48,10 @@ document.getElementById('response').innerText = 'Response: ' + JSON.stringify(re
         if (gxhr.status >= 200 && gxhr.status < 300) {
             const response = JSON.parse(gxhr.responseText);
 		
-            document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
+            //document.getElementById('response').innerText = 'Response: ' + JSON.stringify(response, null, 2);
 
 		const gjsonResponse = JSON.parse(gxhr.responseText);
-
+alert(gjsonResponse.milestones.length);
 		for (var i = 0; i < gjsonResponse.milestones.length; i++) {
     var select = document.getElementById("Select");
     var option = document.createElement("option");
@@ -83,28 +83,8 @@ document.getElementById('response').innerText = 'Response: ' + JSON.stringify(re
     // Send the request with the JSON-encoded data
     //xhr.send(JSON.stringify(postData));
 		xhr.send();
-		
-		/*
-$.post(zturl,null, function(data, status){
-    alert("Data: " + data + "\nStatus: " + status);
-  });
-		
-		$.ajax({
-  url: zturl,
-  method: "POST",
-}).done(function( data ) {
-    if ( console && console.log ) {
-      alert( "done" );
-    }
-  }).fail(function() {
-    alert( "error" );
-  })
-  .always(function() {
-    alert( "finished" );
-  });
-		*/
-		
-		//var fproject_desc = getParameterByName('project_desc'); 
+	}
+		function showInvoiceList() {
 var params = new URL(window.location).searchParams;
 var fproject_desc = params.get('project_desc');
             window.open("https://softwaresolutions.imagegrafix.in:8089/invoice/InvoiceList?Refference=" + fproject_desc);
@@ -119,6 +99,11 @@ var milestone_id = params.get('milestone_id');
 		var project_id = params.get('project_id');
             window.open("https://softwaresolutions.imagegrafix.in:8089/invoice/index?MileStone=" + milestone + "&Refference=" + project_desc + "&Milestone ID=" + milestone_id + "&Projectid=" + project_id);
         }
+
+	    document.addEventListener('DOMContentLoaded', (event) => {
+            populateSelect();
+        });
+	    
     </script>
 </head>
 
