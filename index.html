@@ -29,6 +29,7 @@ var project_id = params.get('project_id');
 	    function populateSelect() {
 		    //https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=38707000004618017&organization=IMAGEGRAFIX_CAPABILITYCENTRE
 	    	var apiEndpoint = "https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=" + project_id +  "&organization=IMAGEGRAFIX_CAPABILITYCENTRE";
+		    alert(apiEndpoint);
 		const gxhr = new XMLHttpRequest();
 		gxhr.open('POST', apiEndpoint, true);
 		gxhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
