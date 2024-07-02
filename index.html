@@ -41,7 +41,8 @@ var project_id = params.get('project_id');
 		gxhr.onload = function() {
         	if (gxhr.status >= 200 && gxhr.status < 300) {
 			const gjsonResponse = JSON.parse('{"milestones":' + gxhr.responseText + '}');			
-			document.getElementById('response').innerText = 'Response: ' + JSON.stringify(gjsonResponse);
+			
+			//document.getElementById('response').innerText = 'Response: ' + JSON.stringify(gjsonResponse);
 			
 				for (var i = 0; i < gjsonResponse.milestones.length; i++) {
     					var select = document.getElementById("Select");
