@@ -29,14 +29,15 @@ var project_id = params.get('project_id');
 	    function populateSelect() {
 		    //https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=38707000004618017&organization=IMAGEGRAFIX_CAPABILITYCENTRE
 	    	var apiEndpoint = "https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=" + project_id +  "&organization=IMAGEGRAFIX_CAPABILITYCENTRE";
-		    alert(apiEndpoint);
+		    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+		    const fullUrl = proxyUrl + apiEndpoint;
 		const gxhr = new XMLHttpRequest();
-		gxhr.open('POST', apiEndpoint, true);
+		gxhr.open('POST', fullUrl, true);
 		gxhr.setRequestHeader('Accept', 'application/json');
 		gxhr.setRequestHeader('Content-Type', 'application/json');
-		gxhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-		gxhr.setRequestHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-		gxhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+		//gxhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+		//gxhr.setRequestHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+		//gxhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
 		gxhr.onload = function() {
         	if (gxhr.status >= 200 && gxhr.status < 300) {
 			const gjsonResponse = JSON.parse(gxhr.responseText);
