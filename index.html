@@ -30,7 +30,7 @@ var project_id = params.get('project_id');
 		    //https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=38707000004618017&organization=IMAGEGRAFIX_CAPABILITYCENTRE
 	    	var apiEndpoint = "https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=" + project_id +  "&organization=IMAGEGRAFIX_CAPABILITYCENTRE";
 		    //const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-		    const proxyUrl ='https://test.cors.workers.dev/?';//'https://softwaresolutions.imagegrafix.in:8080/api/proxy/';
+		    const proxyUrl ='https://thingproxy.freeboard.io/fetch/';//'https://test.cors.workers.dev/?';//'https://softwaresolutions.imagegrafix.in:8080/api/proxy/';
 		    const fullUrl = proxyUrl + apiEndpoint;
 		const gxhr = new XMLHttpRequest();
 		gxhr.open('POST', fullUrl, true);
