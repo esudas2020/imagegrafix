@@ -30,6 +30,7 @@ var project_id = params.get('project_id');
 		    //https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=38707000004618017&organization=IMAGEGRAFIX_CAPABILITYCENTRE
 	    	var apiEndpoint = "https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=" + project_id +  "&organization=IMAGEGRAFIX_CAPABILITYCENTRE";
 		    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+		    proxyUrl ='https://hoppscotch.io/';//'https://softwaresolutions.imagegrafix.in:8080/api/proxy/';
 		    const fullUrl = proxyUrl + apiEndpoint;
 		const gxhr = new XMLHttpRequest();
 		gxhr.open('POST', fullUrl, true);
@@ -67,6 +68,7 @@ var project_id = params.get('project_id');
 		
 		var apiEndpoint = "https://accounts.zoho.in/oauth/v2/token?refresh_token=" + refresh_token + "&client_id=" + client_id + "&client_secret=" + client_secret +  "&grant_type=refresh_token";
 		const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+		
 		//https://cors-anywhere.herokuapp.com/corsdemo
 		 const fullUrl = proxyUrl + apiEndpoint;
 		 const xhr = new XMLHttpRequest();
