@@ -34,8 +34,9 @@ var project_id = params.get('project_id');
 		gxhr.open('POST', apiEndpoint, true);
 		gxhr.setRequestHeader('Accept', 'application/json');
 		gxhr.setRequestHeader('Content-Type', 'application/json');
-		gxhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-		gxhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		gxhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+		gxhr.setRequestHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+		gxhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
 		gxhr.onload = function() {
         	if (gxhr.status >= 200 && gxhr.status < 300) {
 			const gjsonResponse = JSON.parse(gxhr.responseText);
