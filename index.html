@@ -47,7 +47,9 @@ var project_id = params.get('project_id');
 		//gxhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
 		gxhr.onload = function() {
         	if (gxhr.status >= 200 && gxhr.status < 300) {
-			const gjsonResponse = JSON.parse('{"milestones":' + gxhr.responseText + '}');			
+			//const gjsonResponse = JSON.parse('{"milestones":' + gxhr.responseText + '}');			
+			
+			const gjsonResponse = JSON.parse(gxhr.responseText);			
 			
 			//document.getElementById('response').innerText = 'Response: ' + JSON.stringify(gjsonResponse);
 			
