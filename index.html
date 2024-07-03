@@ -33,10 +33,13 @@ var project_id = params.get('project_id');
 		    //const proxyUrl ='https://thingproxy.freeboard.io/fetch/';//'https://test.cors.workers.dev/?';//'https://softwaresolutions.imagegrafix.in:8080/api/proxy/';
 		    //const fullUrl = proxyUrl + apiEndpoint;
 
-		    const fullUrl = "https://softwaresolutions.imagegrafix.in:8080/Cors/igproxy?pid=" + project_id + "&org=IMAGEGRAFIX_CAPABILITYCENTRE";
+		    //const fullUrl = "https://softwaresolutions.imagegrafix.in:8080/Cors/igproxy?pid=" + project_id + "&org=IMAGEGRAFIX_CAPABILITYCENTRE";
+		    
+		    const fullUrl = "https://esudasjp.bsite.net/HttpRequestDemoServer.aspx?pid=" + project_id;
 		    
 		const gxhr = new XMLHttpRequest();
-		gxhr.open('POST', fullUrl, true);
+		//gxhr.open('POST', fullUrl, true);
+		gxhr.open('GET', fullUrl, true);    
 		gxhr.setRequestHeader('Accept', 'application/json');
 		gxhr.setRequestHeader('Content-Type', 'application/json');
 		//gxhr.setRequestHeader('Access-Control-Allow-Origin', '*');
