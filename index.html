@@ -26,7 +26,7 @@ var project_id = params.get('project_id');
 	    var client_id = "1000.5Y3AZV8FIIVVH6VZJU0Y6726IEET6J";
 	    var client_secret = "bf29f2e7680b5dde78d746d0ae4236ace7d88ef792";
 
-	    function populateSelect() {
+	    function populateSelectnew() {
 		    //https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=38707000004618017&organization=IMAGEGRAFIX_CAPABILITYCENTRE
 	    	    //var apiEndpoint = "https://softwaresolutions.imagegrafix.in:8080/ZohoSync/ZohoMileStones/?projectid=" + project_id +  "&organization=IMAGEGRAFIX_CAPABILITYCENTRE";
 		    //const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -72,7 +72,7 @@ var project_id = params.get('project_id');
 		    
 	    }
 	    
-        function populateSelectold() {
+        function populateSelect() {
 		
 		var apiEndpoint = "https://accounts.zoho.in/oauth/v2/token?refresh_token=" + refresh_token + "&client_id=" + client_id + "&client_secret=" + client_secret +  "&grant_type=refresh_token";
 		const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
