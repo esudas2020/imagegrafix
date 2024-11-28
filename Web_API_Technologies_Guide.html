@@ -37,10 +37,53 @@
             <tr><td>Next.js</td><td>-</td><td>Next.js API Route</td></tr>
             <tr><td>C</td><td>libmicrohttpd</td><td>libmicrohttpd</td></tr>
             <tr><td>C++</td><td>Boost.Beast, Poco, Crow</td><td>Crow</td></tr>
+            <tr><td>ASPX</td><td>-</td><td>ASPX Page Handler</td></tr>
         </tbody>
     </table>
-<h2>Python</h2>
-<pre>from flask import Flask, request, jsonify
+
+    <h2>ASPX</h2>
+    <pre>&lt;%@ Page Language="C#" %&gt;
+&lt;%@ import Namespace="System" %&gt;
+&lt;%@ import Namespace="System.Linq" %&gt;
+&lt;%@ import Namespace="System.Net" %&gt;
+&lt;%@ import Namespace="System.Web" %&gt;
+&lt;%@ import Namespace="System.IO" %&gt;
+
+&lt;script runat="server"&gt;
+    void Page_Load(object sender, EventArgs e)
+    {
+        string method = Request.HttpMethod.ToUpper();
+
+        if (method == "GET")
+        {
+            // Handle GET request
+            Response.Write("GET method invoked.&lt;br/&gt;");
+            Response.Write("Query Parameters:&lt;br/&gt;");
+
+            foreach (string key in Request.QueryString.Keys)
+            {
+                Response.Write($"{key}: {Request.QueryString[key]}&lt;br/&gt;");
+            }
+        }
+        else if (method == "POST")
+        {
+            // Handle POST request
+            Response.Write("POST method invoked.&lt;br/&gt;");
+
+            foreach (string key in Request.Form.Keys)
+            {
+                Response.Write($"{key}: {Request.Form[key]}&lt;br/&gt;");
+            }
+        }
+        else
+        {
+            Response.Write($"HTTP Method {method} is not supported.&lt;br/&gt;");
+        }
+    }
+&lt;/script&gt;</pre>
+
+    <h2>Python</h2>
+    <pre>from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -51,8 +94,9 @@ def api():
 
 if __name__ == '__main__':
     app.run()</pre>
-<h2>Node.js</h2>
-<pre>const express = require('express');
+
+    <h2>Node.js</h2>
+    <pre>const express = require('express');
 const app = express();
 
 app.use(express.json());
@@ -64,7 +108,7 @@ app.post('/api', (req, res) => {
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });</pre>
-<h2>PHP</h2>
+    <h2>PHP</h2>
 <pre>&lt;?php
 header("Content-Type: application/json");
 
