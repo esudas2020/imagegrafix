@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Web APIs Using Various Technologies</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1 { color: #2c3e50; }
+        h2 { color: #16a085; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        pre { background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Building Web APIs Using Various Technologies</h1>
+    <p>Web APIs act as intermediaries that allow different applications to communicate over the internet. They receive requests, process them, and send responses back to clients. Below is a guide to building Web APIs using various technologies.</p>
+
+    <h2>Summary Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Technology</th>
+                <th>Framework/Library</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Python</td><td>Flask, Django REST, FastAPI</td><td>Flask</td></tr>
+            <tr><td>Node.js</td><td>Express.js</td><td>Express.js</td></tr>
+            <tr><td>PHP</td><td>Laravel, Plain PHP</td><td>Plain PHP</td></tr>
+            <tr><td>Java</td><td>Spring Boot, JAX-RS</td><td>Spring Boot</td></tr>
+            <tr><td>ASP.NET Core</td><td>-</td><td>Minimal API</td></tr>
+            <tr><td>Next.js</td><td>-</td><td>Next.js API Route</td></tr>
+            <tr><td>C</td><td>libmicrohttpd</td><td>libmicrohttpd</td></tr>
+            <tr><td>C++</td><td>Boost.Beast, Poco, Crow</td><td>Crow</td></tr>
+        </tbody>
+    </table>
+<h2>Python</h2>
+<pre>from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api', methods=['GET', 'POST'])
+def api():
+    data = request.json
+    return jsonify({'response': 'Received', 'data': data})
+
+if __name__ == '__main__':
+    app.run()</pre>
+<h2>Node.js</h2>
+<pre>const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.post('/api', (req, res) => {
+    res.json({ response: 'Received', data: req.body });
+});
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});</pre>
+<h2>PHP</h2>
+<pre>&lt;?php
+header("Content-Type: application/json");
+
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+if ($requestMethod == 'POST') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    echo json_encode(['response' => 'Received', 'data' => $input]);
+}</pre>
+<h2>Java</h2>
+<pre>@RestController
+@RequestMapping("/api")
+public class ApiController {
+    @PostMapping
+    public ResponseEntity&lt;Map&lt;String, String>> handlePost(@RequestBody Map&lt;String, Object> payload) {
+        return ResponseEntity.ok(Map.of("response", "Received", "data", payload.toString()));
+    }
+}</pre>
+<h2>ASP.NET Core</h2>
+<pre>var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/api/hello", () => new { message = "Hello World!" });
+app.MapPost("/api/data", (object data) => Results.Ok(new { response: "Received", data }));
+
+app.Run();</pre>
+<h2>Next.js</h2>
+<pre>// pages/api/hello.js
+export default function handler(req, res) {
+    if (req.method === 'POST') {
+        const data = req.body;
+        res.status(200).json({ response: 'Received', data });
+    } else {
+        res.status(200).json({ message: 'Hello from Next.js API' });
+    }
+}</pre>
+<h2>C</h2>
+<pre>#include &lt;microhttpd.h>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+int handle_request(void *cls, struct MHD_Connection *connection,
+                   const char *url, const char *method, const char *version,
+                   const char *upload_data, size_t *upload_data_size, void **ptr) {
+    const char *response = "{"response": "Hello, World!"}";
+    struct MHD_Response *res = MHD_create_response_from_buffer(strlen(response),
+                    (void*)response, MHD_RESPMEM_PERSISTENT);
+    int ret = MHD_queue_response(connection, MHD_HTTP_OK, res);
+    MHD_destroy_response(res);
+    return ret;
+}
+
+int main() {
+    struct MHD_Daemon *daemon = MHD_start_daemon(MHD_USE_INTERNAL_POLLING_THREAD, 8080, NULL, NULL,
+                                                 &handle_request, NULL, MHD_OPTION_END);
+    getchar();
+    MHD_stop_daemon(daemon);
+    return 0;
+}</pre>
+<h2>C++</h2>
+<pre>#include "crow.h"
+
+int main() {
+    crow::SimpleApp app;
+
+    CROW_ROUTE(app, "/api")([]() {
+        return crow::json::wvalue{{"response", "Hello, World!"}};
+    });
+
+    app.port(8080).multithreaded().run();
+}</pre>
+
+</body>
+</html>
