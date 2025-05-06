@@ -173,7 +173,7 @@
     document.getElementById('createDealButton').addEventListener('click', function() {
         const formData = new FormData(document.getElementById('dealForm'));
 
-        fetch('createdeal.php', {  // PHP file name to process form //<form method="POST" action="http://yourdomain.com/ZohoSubmit.aspx">
+        fetch('https://esudas.bsite.net/zohoform.aspx', {  // PHP file name to process form //<form method="POST" action="http://yourdomain.com/ZohoSubmit.aspx">
             method: 'POST',
             body: formData
         })
