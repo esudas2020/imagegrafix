@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Stack Portfolio - 15 Strategic Combinations</title>
+    <meta http-equiv="Cache-Control" content="public, max-age=86400">
+    <style>
+        :root {
+            --cad: #3498db;
+            --ai: #9b59b6;
+            --cloud: #27ae60;
+            --mobile: #e74c3c;
+            --legacy: #f39c12;
+            --fullstack: #2c3e50;
+            --consulting: #1abc9c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .filters {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .combinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .combination-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .combination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .combination-card.cad { border-top-color: var(--cad); }
+        .combination-card.ai { border-top-color: var(--ai); }
+        .combination-card.cloud { border-top-color: var(--cloud); }
+        .combination-card.mobile { border-top-color: var(--mobile); }
+        .combination-card.legacy { border-top-color: var(--legacy); }
+        .combination-card.fullstack { border-top-color: var(--fullstack); }
+        .combination-card.consulting { border-top-color: var(--consulting); }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .role-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+
+        .role-title {
+            flex: 1;
+        }
+
+        .role-title h3 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+
+        .role-category {
+            background: #ecf0f1;
+            color: #7f8c8d;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .target-audience {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .target-audience h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .tech-stack {
+            margin-bottom: 20px;
+        }
+
+        .tech-stack h4 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: #3498db;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .tech-tag.expert { background: #27ae60; }
+        .tech-tag.advanced { background: #3498db; }
+        .tech-tag.intermediate { background: #f39c12; }
+
+        .key-projects {
+            margin-bottom: 20px;
+        }
+
+        .key-projects h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .project-list {
+            list-style: none;
+        }
+
+        .project-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.9em;
+            color: #5d6d7e;
+        }
+
+        .project-list li:last-child {
+            border-bottom: none;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .experience-badge {
+            background: #3498db;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .select-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+        }
+
+        .select-btn:hover {
+            background: #219652;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .combinations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 15px 20px;
+            }
+        }
+
+        .combination-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: inherit;
+            border-top: 5px solid inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Tech Stack Portfolio</h1>
+            <div class="subtitle">15 Strategic Combinations from 25 Years of Experience</div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Strategic Roles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterCombinations('all')">All Roles</button>
+                <button class="filter-btn" onclick="filterCombinations('cad')">CAD & Engineering</button>
+                <button class="filter-btn" onclick="filterCombinations('ai')">AI & ML</button>
+                <button class="filter-btn" onclick="filterCombinations('cloud')">Cloud & Integration</button>
+                <button class="filter-btn" onclick="filterCombinations('mobile')">Mobile & IoT</button>
+                <button class="filter-btn" onclick="filterCombinations('legacy')">Legacy Modernization</button>
+                <button class="filter-btn" onclick="filterCombinations('consulting')">Consulting</button>
+            </div>
+        </div>
+
+        <div class="combinations-grid" id="combinationsGrid">
+            <!-- Combination 1 -->
+            <div class="combination-card cad" data-category="cad">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🏗️ CAD Automation Architect</h3>
+                        <div class="role-category">Engineering & Manufacturing</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Engineering Firms, Manufacturing Companies, AEC Industry</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">AutoCAD</span>
+                        <span class="tech-tag expert">BricsCAD</span>
+                        <span class="tech-tag expert">Inventor</span>
+                        <span class="tech-tag expert">Visual Lisp</span>
+                        <span class="tech-tag expert">ObjectARX</span>
+                        <span class="tech-tag advanced">SolidWorks</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Elevator Drawing Automation</li>
+                        <li>Heat Exchanger Assembly Systems</li>
+                        <li>Industrial Fan Design Automation</li>
+                        <li>3D Clash Detection Systems</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">25 Years Experience</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 2 -->
+            <div class="combination-card ai" data-category="ai">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🤖 AI/ML Engineer</h3>
+                        <div class="role-category">Artificial Intelligence & Computer Vision</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Tech Startups, AI Companies, R&D Departments</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">Python</span>
+                        <span class="tech-tag expert">YOLOv5</span>
+                        <span class="tech-tag expert">OpenAI API</span>
+                        <span class="tech-tag advanced">TensorFlow</span>
+                        <span class="tech-tag advanced">Computer Vision</span>
+                        <span class="tech-tag intermediate">PyTorch</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>P&ID Symbol Detection AI</li>
+                        <li>AI Proposal Automation</li>
+                        <li>Document Intelligence Systems</li>
+                        <li>Computer Vision for Engineering</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">8 Years AI Experience</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 3 -->
+            <div class="combination-card cloud" data-category="cloud">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>☁️ Enterprise Integration Architect</h3>
+                        <div class="role-category">Cloud & System Integration</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Large Enterprises, IT Consulting, System Integrators</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">REST APIs</span>
+                        <span class="tech-tag expert">Zoho Suite</span>
+                        <span class="tech-tag expert">SAP Integration</span>
+                        <span class="tech-tag advanced">MuleSoft</span>
+                        <span class="tech-tag advanced">Oracle Primavera</span>
+                        <span class="tech-tag intermediate">AWS/Azure</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>15+ Platform Integration</li>
+                        <li>Zoho CRM to SharePoint Sync</li>
+                        <li>SAP to Hexagon EAM Integration</li>
+                        <li>Enterprise Workflow Automation</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">12 Years Integration</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 4 -->
+            <div class="combination-card fullstack" data-category="fullstack">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>💻 Full-Stack Tech Lead</h3>
+                        <div class="role-category">End-to-End Development</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Software Companies, IT Departments, Tech Startups</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">C# .NET</span>
+                        <span class="tech-tag expert">ASP.NET Core</span>
+                        <span class="tech-tag advanced">React/Angular</span>
+                        <span class="tech-tag expert">SQL Server</span>
+                        <span class="tech-tag advanced">JavaScript/TypeScript</span>
+                        <span class="tech-tag intermediate">Docker</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Lead Management Systems</li>
+                        <li>Enterprise Web Portals</li>
+                        <li>Real-time Dashboards</li>
+                        <li>Custom Business Applications</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">15 Years Full-Stack</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 5 -->
+            <div class="combination-card legacy" data-category="legacy">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🔄 Legacy Modernization Expert</h3>
+                        <div class="role-category">System Migration & Modernization</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Enterprises with Legacy Systems, Government, Large Corps</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">VBA to .NET</span>
+                        <span class="tech-tag expert">Lisp to C#</span>
+                        <span class="tech-tag expert">Migration Strategy</span>
+                        <span class="tech-tag advanced">COM Interop</span>
+                        <span class="tech-tag advanced">Database Migration</span>
+                        <span class="tech-tag intermediate">Modernization Patterns</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>VBA to VB.NET Migration (100+ files)</li>
+                        <li>AutoCAD Lisp to C# Conversion</li>
+                        <li>ObjectARX 2000 to 2005 Upgrade</li>
+                        <li>Database Schema Modernization</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">20 Years Migration</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 6 -->
+            <div class="combination-card mobile" data-category="mobile">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>📱 Mobile & IoT Developer</h3>
+                        <div class="role-category">Mobile Apps & Internet of Things</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Mobile App Companies, IoT Startups, Tech Innovation</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">Android/Java</span>
+                        <span class="tech-tag advanced">Xamarin</span>
+                        <span class="tech-tag expert">Raspberry Pi</span>
+                        <span class="tech-tag advanced">IoT Protocols</span>
+                        <span class="tech-tag intermediate">Bluetooth/WiFi</span>
+                        <span class="tech-tag intermediate">Arduino</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Android Proof Capture App</li>
+                        <li>GPS Tracking Systems</li>
+                        <li>Home Automation with Raspberry Pi</li>
+                        <li>IoT Sensor Networks</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">8 Years Mobile/IoT</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 7 -->
+            <div class="combination-card consulting" data-category="consulting">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🎯 Digital Transformation Consultant</h3>
+                        <div class="role-category">Strategic Technology Consulting</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Consulting Firms, Enterprise Clients, C-Level Executives</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">Technology Strategy</span>
+                        <span class="tech-tag expert">Digital Roadmaps</span>
+                        <span class="tech-tag advanced">AI Implementation</span>
+                        <span class="tech-tag advanced">Cloud Architecture</span>
+                        <span class="tech-tag intermediate">Change Management</span>
+                        <span class="tech-tag intermediate">ROI Analysis</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>AI Adoption Strategy for Engineering</li>
+                        <li>Cloud Migration Planning</li>
+                        <li>Digital Workforce Transformation</li>
+                        <li>Technology Stack Optimization</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">10 Years Consulting</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 8 -->
+            <div class="combination-card ai" data-category="ai">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>👁️ Computer Vision Specialist</h3>
+                        <div class="role-category">Image Processing & Pattern Recognition</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Manufacturing QA, Security, Medical Imaging, Automation</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">OpenCV</span>
+                        <span class="tech-tag expert">YOLO Models</span>
+                        <span class="tech-tag advanced">Image Processing</span>
+                        <span class="tech-tag advanced">Object Detection</span>
+                        <span class="tech-tag intermediate">Neural Networks</span>
+                        <span class="tech-tag intermediate">Model Training</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Engineering Drawing Analysis</li>
+                        <li>P&ID Symbol Recognition</li>
+                        <li>Document Layout Understanding</li>
+                        <li>Quality Control Automation</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">6 Years CV Experience</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 9 -->
+            <div class="combination-card cloud" data-category="cloud">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🔗 API & Integration Developer</h3>
+                        <div class="role-category">System Connectivity & Data Flow</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: SaaS Companies, Platform Developers, System Integrators</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">RESTful APIs</span>
+                        <span class="tech-tag expert">Web Services</span>
+                        <span class="tech-tag advanced">GraphQL</span>
+                        <span class="tech-tag advanced">OAuth/Security</span>
+                        <span class="tech-tag intermediate">Message Queues</span>
+                        <span class="tech-tag intermediate">API Gateways</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Multi-Platform Integration Hub</li>
+                        <li>Custom API Development</li>
+                        <li>Data Synchronization Systems</li>
+                        <li>Real-time Data Pipelines</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">10 Years API Dev</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 10 -->
+            <div class="combination-card cad" data-category="cad">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>📐 Engineering Software Developer</h3>
+                        <div class="role-category">CAD/CAM/CAE Development</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Engineering Software Companies, Manufacturing, AEC</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">CAD APIs</span>
+                        <span class="tech-tag expert">3D Modeling</span>
+                        <span class="tech-tag advanced">Parametric Design</span>
+                        <span class="tech-tag advanced">Geometry Processing</span>
+                        <span class="tech-tag intermediate">Simulation</span>
+                        <span class="tech-tag intermediate">BIM</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Parametric Model Generation</li>
+                        <li>3D Visualization Tools</li>
+                        <li>Engineering Calculation Integration</li>
+                        <li>Design Automation Systems</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">20 Years Engineering SW</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 11 -->
+            <div class="combination-card fullstack" data-category="fullstack">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>⚡ Rapid Prototyping Specialist</h3>
+                        <div class="role-category">Quick Solution Development</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Startups, Innovation Labs, Product Companies</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">.NET Core</span>
+                        <span class="tech-tag expert">Python Flask</span>
+                        <span class="tech-tag advanced">React</span>
+                        <span class="tech-tag advanced">SQLite</span>
+                        <span class="tech-tag intermediate">Docker</span>
+                        <span class="tech-tag intermediate">CI/CD</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>MVP Development</li>
+                        <li>Proof of Concept Systems</li>
+                        <li>Quick Business Solutions</li>
+                        <li>Innovation Prototypes</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">15 Years Prototyping</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 12 -->
+            <div class="combination-card mobile" data-category="mobile">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🎮 AR/VR Developer</h3>
+                        <div class="role-category">Immersive Technology</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Gaming, Training, Simulation, Real Estate, Education</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">Unity 3D</span>
+                        <span class="tech-tag advanced">C# for Games</span>
+                        <span class="tech-tag advanced">3D Modeling</span>
+                        <span class="tech-tag intermediate">VR/AR SDKs</span>
+                        <span class="tech-tag intermediate">Blender</span>
+                        <span class="tech-tag intermediate">Oculus/VR</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Virtual Reality Model Interaction</li>
+                        <li>Engineering Visualization</li>
+                        <li>Training Simulations</li>
+                        <li>Interactive 3D Experiences</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">5 Years AR/VR</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 13 -->
+            <div class="combination-card consulting" data-category="consulting">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🏢 Enterprise Solution Architect</h3>
+                        <div class="role-category">Large Scale System Design</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Fortune 500, Large Enterprises, Government</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">System Architecture</span>
+                        <span class="tech-tag expert">Enterprise Patterns</span>
+                        <span class="tech-tag advanced">Cloud Design</span>
+                        <span class="tech-tag advanced">Security</span>
+                        <span class="tech-tag intermediate">Scalability</span>
+                        <span class="tech-tag intermediate">Performance</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Enterprise System Design</li>
+                        <li>Cloud Migration Architecture</li>
+                        <li>Integration Strategy</li>
+                        <li>Technology Stack Selection</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">12 Years Architecture</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 14 -->
+            <div class="combination-card legacy" data-category="legacy">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🔧 Technical Debt Specialist</h3>
+                        <div class="role-category">Code Quality & Maintenance</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Companies with Legacy Code, Maintenance Teams</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">Code Refactoring</span>
+                        <span class="tech-tag expert">Performance Optimization</span>
+                        <span class="tech-tag advanced">Testing Strategies</span>
+                        <span class="tech-tag advanced">Documentation</span>
+                        <span class="tech-tag intermediate">Code Analysis</span>
+                        <span class="tech-tag intermediate">Best Practices</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>Legacy Code Modernization</li>
+                        <li>Performance Optimization</li>
+                        <li>Code Quality Improvement</li>
+                        <li>Technical Documentation</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">18 Years Maintenance</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+
+            <!-- Combination 15 -->
+            <div class="combination-card consulting" data-category="consulting">
+                <div class="card-header">
+                    <div class="role-title">
+                        <h3>🌟 Innovation Technology Lead</h3>
+                        <div class="role-category">Emerging Technology Adoption</div>
+                    </div>
+                </div>
+                <div class="target-audience">
+                    <h4>🎯 Target: Innovation Departments, R&D, Forward-thinking Companies</h4>
+                </div>
+                <div class="tech-stack">
+                    <h4>🛠️ Core Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag expert">Technology Scouting</span>
+                        <span class="tech-tag expert">Innovation Strategy</span>
+                        <span class="tech-tag advanced">AI/ML Trends</span>
+                        <span class="tech-tag advanced">Emerging Tech</span>
+                        <span class="tech-tag intermediate">Research & Development</span>
+                        <span class="tech-tag intermediate">Proof of Concept</span>
+                    </div>
+                </div>
+                <div class="key-projects">
+                    <h4>🚀 Key Projects</h4>
+                    <ul class="project-list">
+                        <li>AI Technology Evaluation</li>
+                        <li>Innovation Roadmapping</li>
+                        <li>Emerging Tech Implementation</li>
+                        <li>R&D Project Leadership</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="experience-badge">10 Years Innovation</div>
+                    <button class="select-btn">Select This Role</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 - 15 Strategic Tech Roles | 25 Years of Technical Excellence
+    </div>
+
+    <script>
+        function filterCombinations(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter cards
+            const cards = document.querySelectorAll('.combination-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add click handlers for select buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectButtons = document.querySelectorAll('.select-btn');
+            selectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const roleTitle = this.closest('.combination-card').querySelector('h3').textContent;
+                    alert(`You selected: ${roleTitle}\n\nThis would generate a targeted resume for this specific role!`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
