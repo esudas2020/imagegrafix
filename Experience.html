@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25 Years of Technical Experience - Portfolio</title>
+    <meta http-equiv="Cache-Control" content="public, max-age=86400">
+    <meta name="description" content="25 years of experience in CAD automation, .NET development, cloud integration, AI/ML, and enterprise solutions">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .filters {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #3498db;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .project-number {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .project-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            flex: 1;
+        }
+
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: #ecf0f1;
+            color: #34495e;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .overview {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .skills-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .skills-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 5px 0;
+            color: #5d6d7e;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>25 Years of Technical Excellence</h1>
+            <div class="subtitle">CAD Automation • Full-Stack Development • Cloud Integration • AI/ML Solutions</div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Industries</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+                <button class="filter-btn" onclick="filterProjects('cad')">CAD & Automation</button>
+                <button class="filter-btn" onclick="filterProjects('web')">Web & Cloud</button>
+                <button class="filter-btn" onclick="filterProjects('ai')">AI & ML</button>
+                <button class="filter-btn" onclick="filterProjects('integration')">Integration</button>
+                <button class="filter-btn" onclick="filterProjects('mobile')">Mobile</button>
+            </div>
+        </div>
+
+        <div class="experience-grid" id="projectsGrid">
+            <!-- Projects will be loaded here by JavaScript -->
+        </div>
+
+        <div class="skills-section">
+            <h2>Technical Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>CAD & Engineering</h3>
+                    <ul class="skill-list">
+                        <li>AutoCAD & BricsCAD</li>
+                        <li>Inventor & Revit</li>
+                        <li>SolidWorks & NX</li>
+                        <li>CADWorx & SmartPlant</li>
+                        <li>Visual Lisp & ObjectARX</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Development</h3>
+                    <ul class="skill-list">
+                        <li>.NET Framework & Core</li>
+                        <li>C# & VB.NET</li>
+                        <li>Python & Java</li>
+                        <li>JavaScript & TypeScript</li>
+                        <li>REST APIs & Web Services</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Cloud & Integration</h3>
+                    <ul class="skill-list">
+                        <li>Zoho Suite</li>
+                        <li>Oracle Primavera</li>
+                        <li>SAP & Hexagon EAM</li>
+                        <li>SharePoint & Dynamics</li>
+                        <li>AWS & Azure</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>AI & Emerging Tech</h3>
+                    <ul class="skill-list">
+                        <li>Computer Vision (YOLO)</li>
+                        <li>LLM & OpenAI</li>
+                        <li>RPA & Automation</li>
+                        <li>AR/VR & Unity</li>
+                        <li>IoT & Raspberry Pi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 - 25 Years of Innovation & Technical Excellence
+    </div>
+
+    <script>
+        // Sample projects data - you can expand this with all your projects
+        const projects = [
+            {
+                id: 1,
+                name: "Elevator Drawing Automation",
+                technologies: ["VLisp", "VB 6.0"],
+                overview: "Generate plan, elevation, section view of elevators with dimensions for each floor",
+                category: "cad"
+            },
+            {
+                id: 2,
+                name: "Heat Exchanger Assembly Automation",
+                technologies: ["Inventor", "AutoCAD", "Excel Interop"],
+                overview: "End-to-end solution from user input in Excel to automated CAD drawing generation",
+                category: "cad"
+            },
+            {
+                id: 3,
+                name: "Android Proof Capture & Upload",
+                technologies: ["Android", "Java", "WCF"],
+                overview: "Mobile application for capturing and uploading proofs with GPS tracking",
+                category: "mobile"
+            },
+            {
+                id: 4,
+                name: "P&ID to Smart P&ID Conversion",
+                technologies: ["Python", "YOLOv5", "Machine Learning"],
+                overview: "AI-powered conversion of P&ID drawings to smart format using object detection",
+                category: "ai"
+            },
+            {
+                id: 5,
+                name: "Zoho CRM to Sharepoint Integration",
+                technologies: ["C# .NET", "REST API", "SharePoint"],
+                overview: "Real-time data synchronization between CRM and document management systems",
+                category: "integration"
+            },
+            {
+                id: 6,
+                name: "Virtual Reality Model Interaction",
+                technologies: ["Unity 3D", "C#", "Oculus"],
+                overview: "Immersive VR experience for 3D model interaction and visualization",
+                category: "ai"
+            },
+            {
+                id: 7,
+                name: "Lead Management Web Application",
+                technologies: ["ASP.NET", "SQL Server", "AngularJS"],
+                overview: "Full-stack web application for managing sales leads and customer relationships",
+                category: "web"
+            },
+            {
+                id: 8,
+                name: "AI Proposal Automation",
+                technologies: ["Python", "OpenAI", "REST API"],
+                overview: "AI-driven system to analyze RFQ emails and generate automated proposals",
+                category: "ai"
+            }
+        ];
+
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '';
+
+            const filteredProjects = filter === 'all' 
+                ? projects 
+                : projects.filter(project => project.category === filter);
+
+            filteredProjects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'experience-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="project-number">#${project.id}</div>
+                    </div>
+                    <div class="project-name">${project.name}</div>
+                    <div class="technologies">
+                        ${project.technologies.map(tech => 
+                            `<span class="tech-tag">${tech}</span>`
+                        ).join('')}
+                    </div>
+                    <div class="overview">${project.overview}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProjects(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Render filtered projects
+            renderProjects(category);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+        });
+    </script>
+</body>
+</html>
