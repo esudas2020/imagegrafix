@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience Dashboard - 25 Years Technical Journey</title>
+    <meta http-equiv="Cache-Control" content="public, max-age=86400">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .dashboard {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: var(--secondary);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .chart-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .timeline {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary);
+            min-width: 80px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .technologies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tech-category {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tech-category h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        .filters {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .projects-table {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .projects-table h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: var(--light);
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🎯 25 Years Technical Dashboard</h1>
+            <div class="subtitle">Comprehensive overview of 250+ projects across multiple technologies and domains</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">250+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Industries Served</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Clients Worldwide</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Lines of Code</div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterData('all')">All Data</button>
+                <button class="filter-btn" onclick="filterData('cad')">CAD & Engineering</button>
+                <button class="filter-btn" onclick="filterData('web')">Web & Cloud</button>
+                <button class="filter-btn" onclick="filterData('ai')">AI & ML</button>
+                <button class="filter-btn" onclick="filterData('integration')">Integration</button>
+                <button class="filter-btn" onclick="filterData('mobile')">Mobile</button>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <h3>Technology Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="techChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Project Timeline</h3>
+                <div class="chart-container">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Domain Expertise</h3>
+                <div class="chart-container">
+                    <canvas id="domainChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Project Complexity</h3>
+                <div class="chart-container">
+                    <canvas id="complexityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="technologies-grid">
+            <div class="tech-category">
+                <h4>CAD & Engineering</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">AutoCAD</span>
+                    <span class="tech-tag">BricsCAD</span>
+                    <span class="tech-tag">Inventor</span>
+                    <span class="tech-tag">Revit</span>
+                    <span class="tech-tag">SolidWorks</span>
+                    <span class="tech-tag">Visual Lisp</span>
+                    <span class="tech-tag">ObjectARX</span>
+                    <span class="tech-tag">CADWorx</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4>Development</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">C# .NET</span>
+                    <span class="tech-tag">VB.NET</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">REST API</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4>Cloud & Platforms</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Zoho Suite</span>
+                    <span class="tech-tag">Oracle Primavera</span>
+                    <span class="tech-tag">SAP</span>
+                    <span class="tech-tag">SharePoint</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Azure</span>
+                    <span class="tech-tag">Dynamics CRM</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4>AI & Emerging Tech</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">YOLOv5</span>
+                    <span class="tech-tag">OpenAI</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Unity 3D</span>
+                    <span class="tech-tag">AR/VR</span>
+                    <span class="tech-tag">Raspberry Pi</span>
+                    <span class="tech-tag">IoT</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h3>Career Evolution Timeline</h3>
+            <div class="timeline-item">
+                <div class="timeline-year">1999-2005</div>
+                <div class="timeline-content">
+                    <strong>CAD Automation Specialist</strong>
+                    <p>Started with AutoCAD automation, VBA, Visual Lisp. Built drawing automation tools and clash detection systems.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2005-2010</div>
+                <div class="timeline-content">
+                    <strong>.NET & Enterprise Solutions</strong>
+                    <p>Transitioned to .NET framework, Inventor automation, and enterprise integration solutions.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2010-2015</div>
+                <div class="timeline-content">
+                    <strong>Web & Mobile Development</strong>
+                    <p>Expanded into web development, Android apps, and cloud integration platforms.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2015-2020</div>
+                <div class="timeline-content">
+                    <strong>AI & Advanced Integration</strong>
+                    <p>Focused on AI/ML, computer vision, and complex enterprise system integrations.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2020-2024</div>
+                <div class="timeline-content">
+                    <strong>Full-Stack Innovation</strong>
+                    <p>Leading-edge work in AI-powered automation, VR/AR, and comprehensive digital transformation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects-table">
+            <h3>Highlighted Projects</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Technologies</th>
+                        <th>Category</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody id="projectsTable">
+                    <!-- Projects will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 - Interactive Experience Dashboard | 25 Years of Technical Excellence
+    </div>
+
+    <script>
+        // Sample data - you can expand this with your actual project data
+        const experienceData = {
+            technologies: {
+                'CAD & Engineering': 85,
+                '.NET Development': 120,
+                'Web Technologies': 65,
+                'Mobile Development': 25,
+                'AI/ML': 35,
+                'Cloud Platforms': 70,
+                'Database': 45,
+                'Integration': 90
+            },
+            timeline: {
+                '1999-2004': 25,
+                '2005-2009': 45,
+                '2010-2014': 60,
+                '2015-2019': 75,
+                '2020-2024': 45
+            },
+            domains: {
+                'AEC (Architecture, Engineering, Construction)': 95,
+                'Manufacturing': 45,
+                'Publishing': 30,
+                'Enterprise Software': 65,
+                'Education': 15
+            },
+            complexity: {
+                'Simple Utilities': 40,
+                'Medium Projects': 125,
+                'Complex Systems': 70,
+                'Enterprise Solutions': 15
+            },
+            projects: [
+                { name: "Elevator Drawing Automation", tech: ["VLisp", "VB 6.0"], category: "cad", year: 2002 },
+                { name: "Heat Exchanger Assembly Automation", tech: ["Inventor", "AutoCAD", "Excel"], category: "cad", year: 2006 },
+                { name: "Android Proof Capture App", tech: ["Android", "Java", "WCF"], category: "mobile", year: 2013 },
+                { name: "P&ID AI Conversion", tech: ["Python", "YOLOv5", "ML"], category: "ai", year: 2022 },
+                { name: "Zoho CRM Integration", tech: ["C#", "REST API", "SharePoint"], category: "integration", year: 2021 },
+                { name: "VR Model Interaction", tech: ["Unity 3D", "C#", "Oculus"], category: "ai", year: 2020 },
+                { name: "Lead Management System", tech: ["ASP.NET", "SQL", "AngularJS"], category: "web", year: 2016 },
+                { name: "AI Proposal Automation", tech: ["Python", "OpenAI", "REST"], category: "ai", year: 2023 }
+            ]
+        };
+
+        // Initialize Charts
+        let techChart, timelineChart, domainChart, complexityChart;
+
+        function initializeCharts() {
+            // Technology Distribution Chart
+            techChart = new Chart(document.getElementById('techChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(experienceData.technologies),
+                    datasets: [{
+                        data: Object.values(experienceData.technologies),
+                        backgroundColor: [
+                            '#3498db', '#2ecc71', '#e74c3c', '#f39c12',
+                            '#9b59b6', '#1abc9c', '#34495e', '#d35400'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+
+            // Timeline Chart
+            timelineChart = new Chart(document.getElementById('timelineChart'), {
+                type: 'line',
+                data: {
+                    labels: Object.keys(experienceData.timeline),
+                    datasets: [{
+                        label: 'Projects per Period',
+                        data: Object.values(experienceData.timeline),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Domain Expertise Chart
+            domainChart = new Chart(document.getElementById('domainChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(experienceData.domains),
+                    datasets: [{
+                        label: 'Projects by Domain',
+                        data: Object.values(experienceData.domains),
+                        backgroundColor: '#2ecc71'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y'
+                }
+            });
+
+            // Complexity Chart
+            complexityChart = new Chart(document.getElementById('complexityChart'), {
+                type: 'polarArea',
+                data: {
+                    labels: Object.keys(experienceData.complexity),
+                    datasets: [{
+                        data: Object.values(experienceData.complexity),
+                        backgroundColor: [
+                            '#3498db', '#2ecc71', '#e74c3c', '#f39c12'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function populateProjectsTable() {
+            const table = document.getElementById('projectsTable');
+            table.innerHTML = experienceData.projects.map(project => `
+                <tr>
+                    <td>${project.name}</td>
+                    <td>${project.tech.join(', ')}</td>
+                    <td>${project.category.toUpperCase()}</td>
+                    <td>${project.year}</td>
+                </tr>
+            `).join('');
+        }
+
+        function filterData(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Here you can implement actual filtering logic
+            // For now, we'll just show a message
+            console.log(`Filtering by: ${category}`);
+            
+            // You can update charts and tables based on the filter
+            // This would require more complex data handling
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCharts();
+            populateProjectsTable();
+        });
+    </script>
+</body>
+</html>
